@@ -4,7 +4,8 @@ class Tomagotchi {
         this.age = tomagotchisaAge;
 
     }
-
-
-
 }
+const morty = new Tomagotchi('Morty', 3);
+
+
+
