@@ -8,22 +8,12 @@ class Tomagotchi {
         this.sleep = 0;
         this.boredom = 0
     }
-    getAge() {
-        this.age++
-        const $age = $(`#age`)
-        $age.text(`Age: ${this.age}`)
-    }
+    // getAge() {
+    //     this.age++
+    //     const $age = $(`#age`)
+    //     $age.text(`Age: ${this.age}`)
+    // }
    
-    getBored() { 
-        this.boredom++
-        const $boredom = $(`#boredom`)
-        $boredom.text(`Boredom: ${this.boredom}`)  
-    }
-    getSleep() { 
-        this.sleep++
-        const $sleep = $(`#sleep`)
-        $sleep.text(`Sleepiness: ${this.sleep}`)
-    }
     feed() { 
         this.hunger--
         const $hunger = $(`#hunger`) 
@@ -64,12 +54,33 @@ const game = {
             $hunger.text(`Hunger: ${this.tomagotchis[0].hunger}`)
         }, randomNumber(5000,9000))
     },
+    setBoredom() {
+        setInterval(() => {
+            const $boredom = $('#boredom')
+            this.tomagotchis[0].boredom++
+            $boredom.text(`Boredom: ${this.tomagotchis[0].boredom}`)
+        }, randomNumber(10000,15000))
+    },
+    setSleep() {
+        setInterval(() => {
+            const $sleep = $('#sleep')
+            this.tomagotchis[0].sleep++
+            $sleep.text(`Sleepiness: ${this.tomagotchis[0].sleep}`)
+        }, randomNumber(5000,7000))
+    },
+    setAge() {
+        setInterval(() => {
+            const $age = $('#age')
+            this.tomagotchis[0].age++
+            $age.text(`Age: ${this.tomagotchis[0].age}`)
+        }, randomNumber(12000,16000))
+    },
     tomagotchisUpdate() {
         for(let i = 0; i < this.tomagotchis.length; i++) {
-            //this.tomagotchis[i].getHungry()
-            this.tomagotchis[i].getSleep()
-            this.tomagotchis[i].getBored()
-            this.tomagotchis[i].getAge()
+            // this.tomagotchis[i].getHungry()
+            // this.tomagotchis[i].getSleep()
+            // this.tomagotchis[i].getBored()
+            // this.tomagotchis[i].getAge()
         }
     }
 }
@@ -100,6 +111,9 @@ const morty = new Tomagotchi('Morty', 3);
 game.tomagotchis.push(morty)
 game.setTimer()
 game.setHunger()
+game.setBoredom()
+game.setSleep()
+game.setAge()
 
 
 
