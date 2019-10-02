@@ -1,10 +1,13 @@
+
+
 class Tomagotchi {
     constructor(tomagotchisName) {
         this.name = tomagotchisName;
         this.age = 0;
-        this.hunger = 0,
-        this.sleep = 0,
+        this.hunger = randomNumber(0,3)
+        this.sleep = randomNumber(0,2)
         this.boredom = 0
+        
     }
     getAge() {
         this.age++
@@ -41,8 +44,14 @@ class Tomagotchi {
         const $boredom = $(`#boredom`)
         $boredom.text(`Boredom: ${this.boredom}`)
     }
-
+    
 }
+let start = prompt("Name your Tomagotchi!")
+console.log(start)
+const petName = new Tomagotchi(start);
+const $tama=$('#name')
+$tama.text(petName.name)
+
 const game = { 
     tomagotchis: [],
     time: 0,
@@ -61,9 +70,13 @@ const game = {
             this.tomagotchis[i].getBored()
             this.tomagotchis[i].getAge()
         }
-        
     }
 }
+
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
 $('.buttons').on('click',(e) => {
     if($(e.target).text() === "Sleep"){
         game.tomagotchis[0].sleeper()
@@ -82,12 +95,8 @@ $('.buttons').on('click',(e) => {
     }
 })
 
-
-
-// const rick = new Tomagotchi('Rick', 55);
 const morty = new Tomagotchi('Morty', 3);
 game.tomagotchis.push(morty)
-// game.tomagotchis.push(rick)
 game.setTimer()
 
 
