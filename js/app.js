@@ -1,5 +1,4 @@
 
-
 class Tomagotchi {
     constructor(tomagotchisName) {
         this.name = tomagotchisName;
@@ -8,33 +7,34 @@ class Tomagotchi {
         this.sleep = 0;
         this.boredom = 0
     }
-    // getAge() {
-    //     this.age++
-    //     const $age = $(`#age`)
-    //     $age.text(`Age: ${this.age}`)
-    // }
-   
+    
     feed() { 
-        this.hunger--
-        const $hunger = $(`#hunger`) 
-        $hunger.text(`Hunger: ${this.hunger}`) 
+        if (this.hunger > 0) { 
+            this.hunger--
+            const $hunger = $(`#hunger`) 
+            $hunger.text(`Hunger: ${this.hunger}`) 
+        }
     }
     sleeper() {
-        this.sleep--
-        const $sleep = $(`#sleep`) 
-        $sleep.text(`Sleepiness: ${this.sleep}`)
+        if (this.sleep > 0) {
+            this.sleep--
+            const $sleep = $(`#sleep`) 
+            $sleep.text(`Sleepiness: ${this.sleep}`)
+        }    
     }
     play() {
-        this.boredom--
-        const $boredom = $(`#boredom`)
-        $boredom.text(`Boredom: ${this.boredom}`)
+        if (this.boredom > 0) {
+            this.boredom--
+            const $boredom = $(`#boredom`)
+            $boredom.text(`Boredom: ${this.boredom}`)
+        }
     }
-    
 }
+
 let start = prompt("Name your Tomagotchi!")
 const petName = new Tomagotchi(start);
-const $tama=$('#name')
-$tama.text(petName.name)
+const $toma=$('#name')
+$toma.text(petName.name)
 
 const game = { 
     tomagotchis: [],
@@ -77,10 +77,6 @@ const game = {
     },
     tomagotchisUpdate() {
         for(let i = 0; i < this.tomagotchis.length; i++) {
-            // this.tomagotchis[i].getHungry()
-            // this.tomagotchis[i].getSleep()
-            // this.tomagotchis[i].getBored()
-            // this.tomagotchis[i].getAge()
         }
     }
 }
