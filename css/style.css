@@ -18,5 +18,16 @@
     
 }
 
+#clock {
+    margin: auto;
+    height: auto;
+    width: 20rem;
+    border: 0.2rem solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: absolute; 
+    align-items: center;
+}
+
 
 

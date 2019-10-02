@@ -1,10 +1,15 @@
 class Tomagotchi {
-    constructor(tomagotchisName, tomagotchisAge) {
+    constructor(tomagotchisName) {
         this.name = tomagotchisName;
-        this.age = tomagotchisAge;
+        this.age = 0;
         this.hunger = 0,
         this.sleep = 0,
         this.boredom = 0
+    }
+    getAge() {
+        this.age++
+        const $age = $(`#age`)
+        $age.text(`Age: ${this.age}`)
     }
     getHungry() {
         this.hunger++
@@ -21,6 +26,21 @@ class Tomagotchi {
         const $sleep = $(`#sleep`)
         $sleep.text(`Sleepiness: ${this.sleep}`)
     }
+    feed() { 
+        this.hunger--
+        const $hunger = $(`#hunger`) 
+        $hunger.text(`Hunger: ${this.hunger}`) 
+    }
+    sleeper() {
+        this.sleep--
+        const $sleep = $(`#sleep`) 
+        $sleep.text(`Sleepiness: ${this.sleep}`)
+    }
+    play() {
+        this.boredom--
+        const $boredom = $(`#boredom`)
+        $boredom.text(`Boredom: ${this.boredom}`)
+    }
 
 }
 const game = { 
@@ -30,7 +50,7 @@ const game = {
         setInterval(() => {
             const $clock = $('#clock')
             this.time++
-            $clock.text(`Clock: ${this.time}s`)
+            $clock.text(`Timer: ${this.time}s`)
             this.tomagotchisUpdate()
         }, 1000)
     },
@@ -39,14 +59,35 @@ const game = {
             this.tomagotchis[i].getHungry()
             this.tomagotchis[i].getSleep()
             this.tomagotchis[i].getBored()
+            this.tomagotchis[i].getAge()
         }
+        
     }
 }
+$('.buttons').on('click',(e) => {
+    if($(e.target).text() === "Sleep"){
+        game.tomagotchis[0].sleeper()
+    }
+})
 
-const rick = new Tomagotchi('Rick', 55);
+$('.buttons').on('click',(e) => {
+    if($(e.target).text() === "Feed"){
+        game.tomagotchis[0].feed()
+    }
+})
+
+$('.buttons').on('click',(e) => {
+    if($(e.target).text() === "Play"){
+        game.tomagotchis[0].play()
+    }
+})
+
+
+
+// const rick = new Tomagotchi('Rick', 55);
 const morty = new Tomagotchi('Morty', 3);
 game.tomagotchis.push(morty)
-game.tomagotchis.push(rick)
+// game.tomagotchis.push(rick)
 game.setTimer()
 
 
